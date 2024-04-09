@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 user-scale=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Candal&family=Lora&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/profile.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Personal Blog Website</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0px;
+            margin: 0;
+            background: #f6f6f6;
+            font-family: "Lora", serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Candal", serif;
+            text-align: center;
+            color: #444;
+        }
+
+        header * {
+            color: white;
+        }
+
+        header {
+            background: #008489;
+            height: 66px;
+
+            top: 0;
+
+        }
+
+        header .logo {
+            float: left;
+            height: inherit;
+            margin-left: 2em;
+        }
+
+        header .logo-text {
+            margin: 10px;
+            font-family: "Candal", serif;
+        }
+
+        header .logo-text span {
+            color: rgb(8, 255, 255)
+        }
+
+        header ul {
+            float: right;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        header ul li {
+            float: left;
+        }
+
+        header ul li ul {
+            position: absolute;
+            top: 66px;
+            right: 0;
+            width: 180px;
+            display: none;
+        }
+
+        header ul li:hover ul {
+            display: block;
+        }
+
+        header ul li ul li {
+            width: 100%;
+        }
+
+        header ul li ul li a {
+            padding: 10px;
+            color: #444;
+            background: white;
+        }
+
+        header ul li ul li a.logout {
+            color: red;
+        }
+
+        header ul li ul li a:hover {
+            background: rgb(219, 217, 217);
+        }
+
+        header ul li a {
+            padding: 20px;
+            display: block;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        header ul li a:hover {
+            background: #005659;
+            transition: 0.5s;
+
+        }
+
+        h2 {
+            font-weight: 700px;
+            font-size: 2rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 60px;
+            margin-bottom: 0;
+        }
+
+        #blog,
+        #portfolio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .blog-box {
+            width: 400px;
+            height:  550px;
+            background-color: #ffffff;
+            border: 2px solid #9d0606;
+            margin: 20px;
+            box-shadow: 0 0 8px rgb(1, 178, 178)
+        }
+
+        .blog-box:hover {
+            box-shadow: 0 0 20px rgb(1, 178, 178);
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .blog-text {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-text span {
+            color: #f20707;
+            font-size: 0.9rem;
+        }
+
+        a i {
+            padding: 0 10px;
+        }
+
+        .blog-text .blog-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #272727;
+        }
+
+        .blog-text p {
+            color: #9b9b9b;
+            font-size: 0.9rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 20px 0px;
+        }
+
+        .blog-text a {
+            color: #0f0f0f;
+        }
+
+        .blog-text a:hover {
+            color: #f33c3c;
+            font-size: 1.33rem;
+            transition: all ease 0.5s;
+        }
+
+        a.read-more-button {
+            padding: 7px;
+            text-align: center;
+            background-color: #645d5d;
+            border-radius: 30px;
+            color: white;
+            
+        }
+
+        #portfolio-writing,
+        #portfolio-projects,
+        #portfolio-musings {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .featured {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 60px;
+            padding-bottom: 50px;
+
+
+        }
+
+        .featured img {
+            width: 400px;
+
+            border-radius: 8px;
+
+        }
+
+        .featured .p {
+            font-size: 30px;
+            padding-bottom: 25px;
+        }
+
+        a.see-more {
+            width: 40%;
+            color: white;
+            background-color: #645d5d;
+            padding: 10px;
+            border-radius: 40px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #see-more-about {
+            width: 40%;
+            color: white;
+            background-color: #645d5d;
+            padding: 10px;
+            border-radius: 40px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+
+
+        #featuredextend {
+            display: none;
+        }
+
+        .contact {
+            min-height: 100vh;
+            padding: 50px 150px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 100px;
+        }
+
+        .contact-form {
+            text-align: center;
+        }
+
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 8px #bbb;
+            color: #333;
+        }
+
+        button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+        }
+
+        #contact {
+            margin-top: 100px;
+        }
+
+        .contact-info {
+            text-align: left;
+            padding: 50px 100px;
+        }
+
+        .contact-info h3 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact-info i {
+            color: #008489;
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #005659;
+        }
+
+        .footer-style {
+            width: 100%;
+            padding: 40px 20px 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #fff;
+            margin: 15px;
+            border-radius: 50%;
+        }
+
+        .social-icons a i {
+            font-size: 1.5rem;
+            color: #037f83;
+            opacity: 0.9;
+        }
+
+        .social-icons a:hover {
+            background-color: #111;
+            transition: 0.5s;
+        }
+
+        .social-icons a:hover i {
+            color: white;
+            transition: 0.5s;
+        }
+
+        .footer-bottom {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: white;
+        }
+
+        .designer {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: rgba(89, 248, 248, 0.957);
+            margin: 0 5px;
+        }
+
+        .skill_container {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+
+        }
+
+        .skill_main,
+        .skill_main {
+            width: 20%;
+            margin: 100px;
+        }
+
+        .skill_title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .skill_title i {
+            color: orange;
+        }
+
+        .skill_box {
+            margin: 1rem 0;
+        }
+
+        .skill_title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .skill_line_container {
+            height: 8px;
+            width: 100%;
+            background-color: orange;
+            border-radius: 0.4rem;
+            overflow: hidden;
+        }
+
+        .skill_line {
+            background-color: #037f83;
+            height: 0.8rem;
+        }
+
+        article {
+            border: none;
+        }
+
+        .resume-section {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 100px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .download-btn {
+            background-color: #037f83;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background-color:  #0b797d;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1 class="logo-text"><span> Digital</span> Dialogues</h1>
+        </div>
+        <ul class="nav">
+
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#about-me">About me</a></li>
+            <li><a href="#contact-info">Contact</a></li>
+
+        </ul>
+    </header>
+
+
+
+
+    <div id="home">
+        <h2 id="h3">My Projects</h2>
+        <section id="portfolio-projects">
+
+            <div class="blog-container">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img src="pro-portfolio.png" alt="">
+                    </div>
+                    <div class="blog-text">
+                        <b class="blog-title">Personal Portfolio Website</b>
+                        <p>My Personal Portfolio Website serves as a digital showcase of my skills, projects, and passion for web development. Built entirely with HTML, CSS, and JavaScript, this project embodies my dedication to crafting elegant and responsive web experiences. From the sleek and intuitive design to the seamless navigation and interactive elements, every aspect of the website reflects my commitment to excellence in web development.</p>
+                        <a href="https://github.com/A-Square8/Personal-Portfolio-Website.git" target="_blank" class="read-more-button">Visit Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-container">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img src="pro-expense.png" alt="">
+                    </div>
+                    <div class="blog-text">
+                        <b class="blog-title">Expense Tracker Using Python</b>
+                        <p>My Expense Tracker Using Python project is a comprehensive solution for managing personal finances efficiently. Developed using Python, this project offers users a simple yet powerful tool to track their expenses, analyze spending patterns, and maintain financial stability. Leveraging Python's versatility and ease of use, I designed this application to streamline the process of expense management, providing users with valuable insights into their financial habits.</p>
+                        <a  class="read-more-button">ComingSoon</a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-container">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img src="pro-cgpa.png" alt="">
+                    </div>
+                    <div class="blog-text">
+                        <b class="blog-title">CGPA Calculator</b>
+                        <p>The CGPA Calculator, crafted using JavaScript, HTML, and CSS, streamlines academic performance assessment for students. With its intuitive interface and precise calculations, it provides a seamless experience for computing Cumulative Grade Point Averages (CGPAs). This valuable tool simplifies the process of determining overall academic achievement, offering students an efficient means to track and evaluate their progress.</p>
+                        <a  class="read-more-button">ComingSoon</a>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+
+        </section>
+
+    </div>
+    <h2>My Skills</h2>
+    <section>
+
+        <div class="skill_container">
+            <div class="skill_main">
+                <h2 class="skill_title"><i class="fas fa-pencil-ruler"></i> Core Skills</h2>
+                <div class="skill_box">
+                    <h2 class="skill_title">Data Structures
+                    </h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Algorithms</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Discrete Mathematics</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Computer Architecture</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="skill_main">
+                <h2 class="skill_title"><i class="fas fa-code"></i> Coding</h2>
+                <div class="skill_box">
+                    <h2 class="skill_title">Python</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 98%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">C/C++</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Java</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill_box">
+                    <h2 class="skill_title">HTML/CSS/JAVA-SCRIPT</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill_main">
+                <h2 class="skill_title"><i class="fas fa-cogs"></i> Other</h2>
+                <div class="skill_box">
+                    <h2 class="skill_title">Database Management</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 88%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Version Control System (Git)</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill_box">
+                    <h2 class="skill_title">Operating Systems</h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill_box">
+                    <h2 class="skill_title">User Interface (UI) Designn </h2>
+                    <div class="skill_line_container">
+                        <div class="skill_line" style="width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="resume">
+        <h2 id="h2 about">Hire me ? My resume</h2>
+        <section class="resume-section">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Ankit Ambasta</td>
+                </tr>
+                <tr>
+                    <td>Nationality</td>
+                    <td>Indian</td>
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td>Bachelor of Technology in Computer Science and Engineering (Internet of Things)</td>
+                </tr>
+                <tr>
+                    <td>Graduation Year</td>
+                    <td>2026</td>
+                </tr>
+                <tr>
+                    <td>Relevant skills</td>
+                    <td>
+                        Programming : Python, C, C++, Java <br>
+                        Core skills : DSA, Operating Systems, Computer Network <br>
+                        Front end : HTML5/CSS3, JavaScript<br>
+                        Other : Version Control, UI/UX, DBMS
+                    </td>
+                </tr>
+                <tr>
+                    <td>Projects</td>
+                    <td>
+                        Expense Tracker Using Python <br>
+                        Personal Portfolio Website <br>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Experience</td>
+                    <td>
+                        "I'm currently in the process of gaining experience, but I'm eager to learn and excited about
+                        the opportunity to contribute."
+                    </td>
+                </tr>
+                <tr>
+                    <td>Download Full Resume</td>
+                    <td>
+                        <button class="download-btn" ><a href="Resume.pdf" target="_blank">Download</a></button>
+                    </td>
+                </tr>
+
+            </table>
+        </section>
+    </div>
+    <div id="about-me">
+        <h2 id="h2 about">About Me</h2>
+        <main class="grid-container">
+            <article class="featured">
+                <img src="home-img.png" alt="featured img">
+                <div>
+                    <h2>Ankit Ambasta</h2>
+                    <p style="padding-bottom:25px;">Hi there! I'm Ankit Ambasta, a computer science undergrad with a
+                        passion for tackling programming challenges and crafting visually stunning webpages. This is my
+                        digital playground, where I showcase my projects and explore the exciting world of tech.</p>
+                    <button id="see-more-about">See More</button>
+                </div>
+            </article>
+            <article id="featuredextend">
+
+                <div>
+                    <dl>
+                        <dt>
+                            <h3>Roots and Wanderlust:</h3>
+                        </dt>
+                        <dd>
+                            <p>Although I was born in the vibrant city of Pune, my roots trace back to the historical
+                                town
+                                of Munger
+                                in Bihar. However, owing to the dynamic nature of my father's profession, our family
+                                embraced the
+                                beauty of diversity by calling various cities home. From the bustling streets of Delhi
+                                to
+                                the scenic
+                                landscapes of Srinagar, the military life took us to places like Hashimara - a small
+                                town on
+                                outskirts of West Bengal, historical city of Agra
+                                , until we finally settled in the joyful city of Vadodara.</p>
+                        </dd>
+                        <dt>
+                            <h3>Early Influences:</h3>
+                        </dt>
+                        <dd>
+                            <p>Growing up amidst these diverse cultures and landscapes has significantly influenced my
+                                worldview. It
+                                taught me adaptability, the value of embracing change, and the richness that comes with
+                                experiencing
+                                different lifestyles.</p>
+                        </dd>
+                        <dt>
+                            <h3>Schooling Adventures:</h3>
+                        </dt>
+                        <dd>
+                            <p>My educational journey has been just as eclectic as my upbringing. From the vibrant
+                                school
+                                days in
+                                different corners of the country, each institution brought unique experiences and
+                                friendships. Air
+                                Force School Agra, where I completed my schooling, holds a special place in my heart,
+                                serving as the
+                                backdrop for numerous memories and academic growth,also it was the spot where my
+                                computer
+                                instinct
+                                start kicking.</p>
+                        </dd>
+                        <dt>
+                            <h3>Navigating the Tech Landscape:</h3>
+                        </dt>
+                        <dd>
+                            <p>Now, as I navigate the intricate landscape of VIT Vellore, pursuing a B.Tech in Computer
+                                Science, I
+                                carry with me the diverse tapestry of experiences that have shaped me. The contrast
+                                between
+                                the
+                                historical wonders of Agra and the tech-centric environment at VIT serves as a constant
+                                reminder of
+                                the multifaceted nature of life.</p>
+                        </dd>
+                        <dt>
+                            <h3>A Glimpse into My World:</h3>
+                        </dt>
+                        <dd>
+                            <p>Beyond the academic and professional pursuits, my heart lies in the fusion of technology
+                                and
+                                personal
+                                connections. This blog is not just a platform for tech talk; it's a space where I share
+                                the
+                                amalgamation of my roots, experiences, and passion for computer science.</p>
+                        </dd>
+                        <dt>
+                            <h3>Beyond the Screen:</h3>
+                        </dt>
+                        <dd>
+                            <p>While my heart belongs to the world of computers, I believe in a balanced lifestyle.
+                                You'll
+                                often
+                                find me on the basketball court or cricket field, reveling in the thrill of outdoor
+                                sports.
+                                Indoors,
+                                I'm a strategic player—chess and carromboard are my go-to games for a cerebral workout.
+                            </p>
+                        </dd>
+                        <dt>
+                            <h3>Literary and Cinematic Palette:</h3>
+                        </dt>
+                        <dd>
+                            <p>Beyond the digital realm, I find solace in the world of literature and cinema. I am an
+                                avid
+                                reader,
+                                delving into the realms of political intrigue, post-apocalyptic landscapes, and
+                                psychological
+                                dramas. Books and movies are my portals to explore the complexities of human nature and
+                                societal
+                                structures.</p>
+                        </dd>
+
+                    </dl>
+                    <br>
+                </div>
+
+            </article>
+
+
+        </main>
+    </div>
+
+
+
+    <div id="contact-info">
+        <h2 id="h2 contact">Contact Me</h2>
+        <section class="contact">
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <h3>Give your Feedback</h3>
+                    <form action="#">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Feedback"></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information :</h3>
+                    <p><i class="fas fa-phone"></i> +91 6395727518</p>
+                    <p><i class="fas fa-envelope"></i> ambastaankit8@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Shubh Residency, Makarpura, Vadodra</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="footer-style">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/_ankit_ambasta_/" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ankit-ambasta-4a58002b9/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/A-Square8" target="_blank"><i class="fab fa-github"></i></a>
+
+            </div>
+            <div class="footer-bottom">
+                <p>Made by <span class="designer"> Ankit Ambasta </span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('see-more-about').addEventListener('click', function () {
+            var moreContent = document.getElementById('featuredextend');
+            var loadButton = document.getElementById('see-more-about');
+
+            if (moreContent.style.display === 'none' || moreContent.style.display === '') {
+                moreContent.style.display = 'block';
+                loadButton.textContent = 'Hide';
+            } else {
+                moreContent.style.display = 'none';
+                loadButton.textContent = 'See More';
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>
